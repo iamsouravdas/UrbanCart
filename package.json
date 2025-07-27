@@ -1,0 +1,41 @@
+{
+   "name": "ecomm-backend",
+   "version": "1.0.0",
+   "description": "",
+   "type": "commonjs",
+   "main": "index.js",
+   "scripts": {
+      "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
+      "watch": "tsc -w",
+      "build": "tsc",
+      "start": "ts-node dist/index.js",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "migration:generate": "npm run typeorm migration:generate ./src/migrations/$(date +%s) -d ./src/data-source.ts",
+      "migration:create": "npm run typeorm migration:create ./src/migrations/$(date +%s)",
+      "migration:run": "npm run typeorm migration:run -d ./src/data-source.ts",
+      "migration:revert": "npm run typeorm migration:revert -d ./src/data-source.ts"
+   },
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "@types/bcrypt": "^6.0.0",
+      "@types/cors": "^2.8.19",
+      "@types/express": "^5.0.3",
+      "@types/jsonwebtoken": "^9.0.10",
+      "@types/memory-cache": "^0.2.6",
+      "concurrently": "^9.2.0",
+      "express": "^5.1.0",
+      "helmet": "^8.1.0",
+      "jsonwebtoken": "^9.0.2",
+      "memory-cache": "^0.2.0",
+      "nodemon": "^3.1.10",
+      "pg": "^8.14.1",
+      "reflect-metadata": "^0.2.2",
+      "typeorm": "0.3.25"
+   },
+   "devDependencies": {
+      "@types/node": "^22.13.10",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.8.2"
+   }
+}
