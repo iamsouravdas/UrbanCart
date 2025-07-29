@@ -1,18 +1,36 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { dot } from "node:test/reporters";
+import { Entity, PrimaryGeneratedColumn, Column, Repository, CreateDateColumn } from "typeorm"
+
+export type UserRole = "user" | "admin";
 
 @Entity()
 export class User {
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
 
     @Column()
-    firstName: string
+    name: string;
+
+    @Column({ unique: true })
+    email: string;
 
     @Column()
-    lastName: string
+    password: string;
 
     @Column()
-    age: number
+    phone!: string;
+
+    @Column({ type: "varchar", default: "user" })
+    role!: UserRole;
+
+    @Column({ nullable: true })
+    refreshToken?: string;
+
+    @CreateDateColumn()
+    createdAt!: Date;
+
+    @CreateDateColumn()
+    updatedAt!: Date;
 
 }

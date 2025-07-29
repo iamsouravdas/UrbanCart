@@ -10,9 +10,9 @@
       "build": "tsc",
       "start": "ts-node dist/index.js",
       "typeorm": "typeorm-ts-node-commonjs",
-      "migration:generate": "npm run typeorm migration:generate ./src/migrations/$(date +%s) -d ./src/data-source.ts",
+      "migration:generate": "npx typeorm-ts-node-commonjs migration:generate src/migrations/CreateUser -d src/data-source.ts",
       "migration:create": "npm run typeorm migration:create ./src/migrations/$(date +%s)",
-      "migration:run": "npm run typeorm migration:run -d ./src/data-source.ts",
+      "migration:run": "npm run typeorm -- migration:run -d src/data-source.ts",
       "migration:revert": "npm run typeorm migration:revert -d ./src/data-source.ts"
    },
    "author": "",
