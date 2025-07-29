@@ -1,16 +1,19 @@
-import dotenv from "dotenv";
 import express, { Request, Response } from "express";
 import appConfigs from "./configs/appConfigs";
 import AppDataSource from "./data-source";
+import dotenv from "dotenv";
 
 // Load environment variables from .env file
 dotenv.config();
+
 // Create an instance of Express
 const app = express();
 
 // Middleware configuration
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Routes Configuration
 
 
 // Initialize the data source and start the server

@@ -1,7 +1,7 @@
 import { dot } from "node:test/reporters";
-import { Entity, PrimaryGeneratedColumn, Column, Repository, CreateDateColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Repository, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm"
+import { Role } from "./Role";
 
-export type UserRole = "user" | "admin";
 
 @Entity()
 export class User {
@@ -21,8 +21,10 @@ export class User {
     @Column()
     phone!: string;
 
-    @Column({ type: "varchar", default: "user" })
-    role!: UserRole;
+    @ManyToOne(() => Role, (role) => role.users)
+    @JoinColumn({ name: "role_id" })
+    role!: Role;
+
 
     @Column({ nullable: true })
     refreshToken?: string;

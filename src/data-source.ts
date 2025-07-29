@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "./entity/User";
 import appConfigs from "./configs/appConfigs";
+import { Role } from "./entity/Role";
 
 const AppDataSource = new DataSource({
     type: "postgres",
@@ -10,10 +11,10 @@ const AppDataSource = new DataSource({
     username: appConfigs.DB_USERNAME,
     password: appConfigs.DB_PASSWORD,
     database: appConfigs.DB_NAME,
-    synchronize: true,
+    synchronize: false,
     logging: false,
-    entities: [User],
-    migrations: [],
+    entities: [User, Role],
+    migrations: ["src/migrations/*.ts"],
     subscribers: [],
 });
 
