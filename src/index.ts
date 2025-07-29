@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import express, { Request, Response } from "express";
-import appConfigs from "./configs/AppConfigs";
+import appConfigs from "./configs/appConfigs";
 import AppDataSource from "./data-source";
 
 // Load environment variables from .env file
