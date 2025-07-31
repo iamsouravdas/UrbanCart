@@ -1,9 +1,9 @@
-import { dot } from "node:test/reporters";
-import { Entity, PrimaryGeneratedColumn, Column, Repository, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "./Role";
+import { RefreshToken } from "./RefreshToken";
 
 
-@Entity()
+@Entity("user")
 export class User {
 
     @PrimaryGeneratedColumn()
@@ -25,9 +25,8 @@ export class User {
     @JoinColumn({ name: "role_id" })
     role!: Role;
 
-
-    @Column({ nullable: true })
-    refreshToken?: string;
+    @OneToMany(() => RefreshToken, (tokem) => tokem.user)
+    refreshTokens!: RefreshToken[];
 
     @CreateDateColumn()
     createdAt!: Date;

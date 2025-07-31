@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGenerat
 import { User } from "./User";
 
 @Entity()
-export class OtpCode{
+export class OtpCode {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -13,12 +13,15 @@ export class OtpCode{
     @Column()
     code: string;
 
-    @Column({type: "timestamptz"})
+    @Column({ type: "timestamptz" })
     expiresAt: Date;
+
+    @Column({ type: "boolean", default: false })
+    isUsed: boolean;
 
     @CreateDateColumn()
     createdAt!: Date;
-    
+
     @CreateDateColumn()
     updatedAt!: Date;
 }
