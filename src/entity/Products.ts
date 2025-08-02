@@ -1,8 +1,10 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Categories } from "./categories";
+import { CartItems } from "./CartItems";
+import { Categories } from "./Categories";
+import { Inventory } from "./Inventory";
 import { ProductImages } from "./ProductImages";
 import { ProductVariants } from "./ProductVariants";
-import { Inventory } from "./Inventory";
+import { Wishlist } from "./Wishlist";
 
 @Entity("products")
 
@@ -41,5 +43,9 @@ export class Products {
     @OneToMany(() => Inventory, (inv) => inv.productInventory)
     inventory!: Inventory[];
 
+    @OneToMany(()=> CartItems, (cartItem)=> cartItem.product)
+    cartItem!: CartItems[];
 
+    @OneToMany(()=> Wishlist, (wishlist)=> wishlist.product)
+    wishlist!: Wishlist[]
 }

@@ -1,6 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "./Role";
 import { RefreshToken } from "./RefreshToken";
+import { Cart } from "./Carts";
+import { Wishlist } from "./Wishlist";
 
 
 @Entity("user")
@@ -27,6 +29,13 @@ export class User {
 
     @OneToMany(() => RefreshToken, (tokem) => tokem.user)
     refreshTokens!: RefreshToken[];
+
+    //Cart
+    @OneToOne(()=> Cart, (cart)=> cart.user)
+    cart!: Cart;
+
+    @OneToMany(()=> Wishlist, (wishlist)=>wishlist.user)
+    wishlist: Wishlist[];
 
     @CreateDateColumn()
     createdAt!: Date;

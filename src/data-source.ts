@@ -1,15 +1,18 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./entity/User";
 import appConfigs from "./configs/appConfigs";
-import { Role } from "./entity/Role";
-import { OtpCode } from "./entity/OtpCode";
-import { Categories } from "./entity/categories";
-import { Products } from "./entity/Products";
-import { ProductImages } from "./entity/ProductImages";
+import { Categories } from "./entity/Categories";
 import { Inventory } from "./entity/Inventory";
+import { OtpCode } from "./entity/OtpCode";
+import { ProductImages } from "./entity/ProductImages";
+import { Products } from "./entity/Products";
 import { ProductVariants } from "./entity/ProductVariants";
 import { RefreshToken } from "./entity/RefreshToken";
+import { Role } from "./entity/Role";
+import { User } from "./entity/User";
+import { Cart } from "./entity/Carts";
+import { CartItems } from "./entity/CartItems";
+import { Wishlist } from "./entity/Wishlist";
 
 const AppDataSource = new DataSource({
     type: "postgres",
@@ -20,7 +23,7 @@ const AppDataSource = new DataSource({
     database: appConfigs.DB_NAME,
     synchronize: false,
     logging: false,
-    entities: [User, Role, RefreshToken, OtpCode, Categories, Products, ProductImages, Inventory, ProductVariants],
+    entities: [User, Role, RefreshToken, Wishlist, OtpCode, CartItems, Wishlist, Categories, Cart, Products, ProductImages, Inventory, ProductVariants],
     migrations: ["src/migrations/*.ts"],
     subscribers: [],
 });
