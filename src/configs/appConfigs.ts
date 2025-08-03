@@ -9,4 +9,4 @@ const appConfigs = {
     DB_NAME: process.env.DB_NAME || "ecommerce",
 }
 
-export default appConfigs;
+export default appConfigs; 

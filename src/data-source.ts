@@ -22,7 +22,7 @@ const AppDataSource = new DataSource({
     password: appConfigs.DB_PASSWORD,
     database: appConfigs.DB_NAME,
     synchronize: false,
-    logging: false,
+    logging: true,
     entities: [User, Role, RefreshToken, Wishlist, OtpCode, CartItems, Wishlist, Categories, Cart, Products, ProductImages, Inventory, ProductVariants],
     migrations: ["src/migrations/*.ts"],
     subscribers: [],
