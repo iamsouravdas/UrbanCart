@@ -1,14 +1,18 @@
 
-
-//  this is the dto for  the User
-export interface createUserDto {
+export interface UserDto {
     id: number;
     name: string;
     email: string;
-    password: string;
     phone: string;
     roleid: number;
+    roleName: string;
 }
+
+
+export interface createUserDto extends UserDto {
+    password: string;
+}
+
 
 //  This is the login respose
 export interface LoginResponse {
@@ -17,6 +21,8 @@ export interface LoginResponse {
     user: createUserDto
 
 }
+
+
 
 
 

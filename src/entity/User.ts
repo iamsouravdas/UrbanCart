@@ -31,10 +31,10 @@ export class User {
     refreshTokens!: RefreshToken[];
 
     //Cart
-    @OneToOne(()=> Cart, (cart)=> cart.user)
+    @OneToOne(() => Cart, (cart) => cart.user)
     cart!: Cart;
 
-    @OneToMany(()=> Wishlist, (wishlist)=>wishlist.user)
+    @OneToMany(() => Wishlist, (wishlist) => wishlist.user)
     wishlist: Wishlist[];
 
     @CreateDateColumn()

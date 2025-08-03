@@ -11,6 +11,19 @@ class UserRepository implements IUserRepository {
     }
 
     /**
+     *  This will get all the users created
+     * 
+     * @returns 
+     * 
+     */
+
+    async getAll(): Promise<User[] | null> {
+        return await this.repo.find({
+            relations: ["role"],
+        });
+    }
+
+    /**
      * Creates a new user and persists it to the database.
      *
      * @remarks
@@ -25,7 +38,7 @@ class UserRepository implements IUserRepository {
      */
 
     async createUser(user: Partial<User>): Promise<User | null> {
-        const newUser = this.repo.create(user);
+        const newUser = await this.repo.create(user);
         return this.repo.save(newUser)
     }
 
@@ -42,7 +55,7 @@ class UserRepository implements IUserRepository {
     */
 
     async findByEmail(email: string): Promise<User | null> {
-        return this.repo.findOne({
+        return await this.repo.findOne({
             where: { email }
         })
     }
