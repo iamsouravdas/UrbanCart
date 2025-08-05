@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import appConfigs from "./configs/appConfigs";
 import AppDataSource from "./data-source";
 import appRoute from "./routes/appRoute";
+import { globalErrorHandler } from "./middleware/globalErrorHandler";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,6 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes Configuration
 app.use("/api", appRoute);
+
+
+app.use(globalErrorHandler);
+
 
 
 // Initialize the data source and start the server
