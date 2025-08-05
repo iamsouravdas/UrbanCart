@@ -11,11 +11,16 @@ class UserRepository implements IUserRepository {
     }
 
     /**
-     *  This will get all the users created
-     * 
-     * @returns 
-     * 
-     */
+  * Retrieves a list of all registered users from the database.
+  *
+  * This function is part of the UserController and interacts with the
+  * UserService layer to fetch user records. It returns a structured JSON
+  * response including status, message, and user data.
+  *
+  * Throws an error if retrieval fails or if no users are found.
+  *
+  * @returns {User[]} JSON object containing all users
+  */
 
     async getAll(): Promise<User[] | null> {
         return await this.repo.find({

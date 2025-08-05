@@ -3,7 +3,6 @@ import { Role } from '../../../entity/Role';
 import { User } from '../../../entity/User';
 import { ApiError } from '../../../errors/ApiError';
 import { helpers } from '../../../helper/utils';
-
 import { IUserRepository } from "../repositories/IUserRepository";
 import bcrypt from 'bcrypt'
 
@@ -13,7 +12,6 @@ export class UserService {
     constructor(_userRepository: IUserRepository) {
         this.userRepository = _userRepository;
     }
-
 
     // Create new user.
     async registerUser(userDto: createUserDto): Promise<User | null> {

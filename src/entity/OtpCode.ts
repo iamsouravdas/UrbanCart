@@ -16,6 +16,9 @@ export class OtpCode {
     @Column({ type: "timestamptz" })
     expiresAt: Date;
 
+    @Column({ type: "varchar", length: 50, nullable: false })
+    purpose: string;
+
     @Column({ type: "boolean", default: false })
     isUsed: boolean;
 
