@@ -1,10 +1,14 @@
+import { RefreshToken } from './../../../entity/RefreshToken';
+import appConfigs from '../../../configs/appConfigs';
+import { LoginDto, LoginResponse } from '../../../dto/LoginDto';
 import { createUserDto, UserDto } from '../../../dto/UserDto';
 import { Role } from '../../../entity/Role';
 import { User } from '../../../entity/User';
 import { ApiError } from '../../../errors/ApiError';
 import { helpers } from '../../../helper/utils';
 import { IUserRepository } from "../repositories/IUserRepository";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export class UserService {
     private userRepository: IUserRepository;
@@ -47,8 +51,37 @@ export class UserService {
 
 
     //User Login
-    async login() {
+    async login(loginInfo: LoginDto): Promise<LoginResponse> {
+        const { email, password } = loginInfo
+        const user = await this.userRepository.findByEmail(email);
+        if (!user) {
+            throw new ApiError(404, "User not found.");
+        }
+        const idPasswordMatch = await bcrypt.compare(password, user.password);
+        if (!idPasswordMatch) {
+            throw new ApiError(401, "Invalid password.");
+        }
 
+        console.log("User found:", user);
+        // Create access token and refresh token
+
+        const accessToken = jwt.sign(
+            { id: user.id, email: user.email, role: user.role.name },
+            appConfigs.authAndSecurity.JWT_SECRET_KEY,
+            { expiresIn: '1m' }
+        );
+
+
+
+        const userDto: UserDto = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            phone: user.phone,
+            roleid: user.role.id,
+            roleName: user.role.name,
+        };
+        return { accessToken, user: userDto };
     }
 
     // Get all users

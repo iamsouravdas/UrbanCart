@@ -5,6 +5,7 @@ const appRoute = Router();
 const userController = new UserController();
 
 appRoute.post("/urban-cart/register", userController.register);
+appRoute.post("/urban-cart/login", userController.login);
 appRoute.get("/urban-cart/get-all-users", userController.getAllRegisteredUsers);
 
 

@@ -14,13 +14,6 @@ export interface createUserDto extends UserDto {
 }
 
 
-//  This is the login respose
-export interface LoginResponse {
-    accessToken: string;
-    refreshToken: string;
-    user: createUserDto
-
-}
 
 
 

@@ -16,11 +16,11 @@ import { Wishlist } from "./entity/Wishlist";
 
 const AppDataSource = new DataSource({
     type: "postgres",
-    host: appConfigs.DB_HOST,
-    port: appConfigs.DB_PORT,
-    username: appConfigs.DB_USERNAME,
-    password: appConfigs.DB_PASSWORD,
-    database: appConfigs.DB_NAME,
+    host: appConfigs.database.DB_HOST,
+    port: appConfigs.database.DB_PORT,
+    username: appConfigs.database.DB_USERNAME,
+    password: appConfigs.database.DB_PASSWORD,
+    database: appConfigs.database.DB_NAME,
     synchronize: false,
     logging: true,
     entities: [User, Role, RefreshToken, Wishlist, OtpCode, CartItems, Wishlist, Categories, Cart, Products, ProductImages, Inventory, ProductVariants],

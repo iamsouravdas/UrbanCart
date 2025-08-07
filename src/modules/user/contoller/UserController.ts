@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import UserRepository from '../repositories/UserRepository';
 import { UserService } from '../services/UserService';
+import { User } from '../../../entity/User';
 export class UserController {
     private userService: UserService
     constructor() {
@@ -21,6 +22,23 @@ export class UserController {
             next(err);
         }
     };
+
+
+    login = async (request: Request, response: Response, next: NextFunction): Promise<Response> => {
+        console.log("this is login controller")
+        try {
+            const loginInfo = request.body;
+            console.log("Login Info:", loginInfo);
+            const user = await this.userService.login(loginInfo);
+            return response.status(200).json({
+                message: "User logged in successfully.",
+                data: user
+            });
+        }
+        catch (err) {
+            next(err);
+        }
+    }
 
 
     getAllRegisteredUsers = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
