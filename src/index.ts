@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-import express, { Request, Response } from "express";
+import express from "express";
 import appConfigs from "./configs/appConfigs";
 import AppDataSource from "./data-source";
-import appRoute from "./routes/appRoute";
 import { globalErrorHandler } from "./middleware/globalErrorHandler";
+import appRoute from "./routes/appRoute";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -24,16 +24,6 @@ app.use(globalErrorHandler);
 // Initialize the data source and start the server
 AppDataSource.initialize().then(() => {
     console.log("Data Source has been initialized!");
-
-    app.get("/", (req: Request, res: Response) => {
-        res.send("Hello World!");
-    });
-
-
-    app.get("/home", (request: Request, response: Response) => {
-        response.send("Welcome to the E-commerce Backend!");
-    });
-
     app.listen(appConfigs.database.PORT, () => {
         console.log(`Server is running on port ${appConfigs.database.PORT}`);
     })

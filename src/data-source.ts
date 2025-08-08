@@ -7,7 +7,6 @@ import { OtpCode } from "./entity/OtpCode";
 import { ProductImages } from "./entity/ProductImages";
 import { Products } from "./entity/Products";
 import { ProductVariants } from "./entity/ProductVariants";
-import { RefreshToken } from "./entity/RefreshToken";
 import { Role } from "./entity/Role";
 import { User } from "./entity/User";
 import { Cart } from "./entity/Carts";
@@ -23,7 +22,7 @@ const AppDataSource = new DataSource({
     database: appConfigs.database.DB_NAME,
     synchronize: false,
     logging: true,
-    entities: [User, Role, RefreshToken, Wishlist, OtpCode, CartItems, Wishlist, Categories, Cart, Products, ProductImages, Inventory, ProductVariants],
+    entities: [User, Role, Wishlist, OtpCode, CartItems, Wishlist, Categories, Cart, Products, ProductImages, Inventory, ProductVariants],
     migrations: ["src/migrations/*.ts"],
     subscribers: [],
 });

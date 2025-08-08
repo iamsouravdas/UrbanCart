@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Role } from "./Role";
-import { RefreshToken } from "./RefreshToken";
 import { Cart } from "./Carts";
+import { Role } from "./Role";
 import { Wishlist } from "./Wishlist";
 
 
@@ -26,9 +25,6 @@ export class User {
     @ManyToOne(() => Role, (role) => role.users)
     @JoinColumn({ name: "role_id" })
     role!: Role;
-
-    @OneToMany(() => RefreshToken, (tokem) => tokem.user)
-    refreshTokens!: RefreshToken[];
 
     //Cart
     @OneToOne(() => Cart, (cart) => cart.user)
