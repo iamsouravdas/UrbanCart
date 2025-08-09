@@ -4,8 +4,24 @@ import { IUserRepository } from "./IUserRepository";
 import AppDataSource from "../../../data-source";
 
 class UserRepository implements IUserRepository {
+
+
+    // * UserRepository is responsible for interacting with the database to perform CRUD operations on User entities.
+    // * It implements the IUserRepository interface to ensure consistent method signatures.
+    // * This class uses TypeORM's Repository pattern to manage User entities.
+    // * It provides methods to get all users, find a user by email, and create
+    // * a new user in the database.
+    // * The repository is initialized with a TypeORM Repository instance for the User entity.
+    // * The constructor can accept a custom repository instance or use the default one from AppDataSource.
+    // * This allows for flexibility in testing and dependency injection.
+    // * The class provides methods to interact with the User entity in the database.
+    // * It includes methods to get all users, find a user by email, and create
     private repo: Repository<User>
 
+    /**
+     * Initializes the UserRepository with a TypeORM Repository instance.
+     * @param _repo - An optional custom repository instance for User entity.
+     */
     constructor(_repo?: Repository<User>) {
         this.repo = _repo ?? AppDataSource.getRepository(User);
     }
