@@ -7,34 +7,34 @@ export const errorUtils = {
      * @returns {Object} An object containing the status code and message.
      */
     badRequest: (message: string) => {
-        new ApiError(400, message || "Bad Request");
+        return new ApiError(400, message || "Bad Request");
     },
     unauthorized: (message: string) => {
-        new ApiError(401, message || "Unauthorized");
+        return new ApiError(401, message || "Unauthorized");
     },
     notFound: (message: string) => {
-        new ApiError(404, message || "Not Found");
+        return new ApiError(404, message || "Not Found");
     },
     internalServerError: (message: string) => {
-        new ApiError(500, message || "Internal Server Error");
+        return new ApiError(500, message || "Internal Server Error");
     },
     conflict: (message: string) => {
-        new ApiError(409, message || "Conflict");
+        return new ApiError(409, message || "Conflict");
     },
     forbidden: (message: string) => {
-        new ApiError(403, message || "Forbidden");
+        return new ApiError(403, message || "Forbidden");
     },
     unprocessableEntity: (message: string) => {
-        new ApiError(422, message || "Unprocessable Entity");
+        return new ApiError(422, message || "Unprocessable Entity");
     },
     serviceUnavailable: (message: string) => {
-        new ApiError(503, message || "Service Unavailable");
+        return new ApiError(503, message || "Service Unavailable");
     },
     gatewayTimeout: (message: string) => {
-        new ApiError(504, message || "Gateway Timeout");
+        return new ApiError(504, message || "Gateway Timeout");
     },
     notImplemented: (message: string) => {
-        new ApiError(501, message || "Not Implemented");
+        return new ApiError(501, message || "Not Implemented");
     }
 
 }
