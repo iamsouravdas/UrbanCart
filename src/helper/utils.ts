@@ -10,6 +10,7 @@ import crypto from 'crypto';
  * @property {Object} validations - Contains validation functions.
  * @property {Object} appAccess - Contains functions for token generation and verification.
  * @property {Object} globalResponse - Contains functions for standardizing API responses.
+ * @property {Object} otp - Contains functions for OTP generation, hashing, and validation.
  */
 
 export const helpers = {
