@@ -4,6 +4,7 @@ import appConfigs from "./configs/appConfigs";
 import AppDataSource from "./data-source";
 import { globalErrorHandler } from "./middleware/globalErrorHandler";
 import appRoute from "./routes/appRoute";
+import cors from "cors";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -13,6 +14,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// CORS configuration
+
+app.use(cors({
+    origin: appConfigs.accessControl.ALLOWED_ORIGINS,
+    methods: appConfigs.accessControl.ALLOWED_METHODS,
+    allowedHeaders: appConfigs.accessControl.ALLOWED_HEADERS,
+    exposedHeaders: appConfigs.accessControl.EXPOSED_HEADERS
+}));
+
+
 // Routes Configuration
 app.use("/api", appRoute);
 
@@ -20,6 +31,7 @@ app.use("/api", appRoute);
 app.use(globalErrorHandler);
 
 // TODO: Cors Handling Configuration
+
 
 // Initialize the data source and start the server
 AppDataSource.initialize().then(() => {

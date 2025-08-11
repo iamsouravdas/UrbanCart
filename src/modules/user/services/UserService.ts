@@ -4,12 +4,11 @@ import { createUserDto, UserDto } from '../../../dto/UserDto';
 import { Role } from '../../../entity/Role';
 import { User } from '../../../entity/User';
 import { ApiError } from '../../../errors/ApiError';
+import { errorUtils } from '../../../helper/errorUtils';
 import { helpers } from '../../../helper/utils';
 import { IUserRepository } from "../repositories/IUserRepository";
-import { errorUtils } from '../../../helper/errorUtils';
 
 export class UserService {
-
     // * The UserService class provides methods for user registration, login, and retrieval of all users.
     // * It interacts with the IUserRepository to perform database operations.
     private userRepository: IUserRepository;
@@ -110,8 +109,6 @@ export class UserService {
             roleid: user.role.id,
             roleName: user.role.name,
         } as UserDto;
-
-
     }
 
     /**

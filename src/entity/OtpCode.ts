@@ -10,8 +10,8 @@ export class OtpCode {
     @JoinColumn({ name: "user_id" })
     user!: User;
 
-    @Column()
-    code: string;
+    @Column({ type: "text", name: "hash_code" })
+    codeHash: string;
 
     @Column({ type: "timestamptz" })
     expiresAt: Date;
