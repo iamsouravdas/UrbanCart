@@ -4,7 +4,8 @@ dotenv.config();
 
 const appConfigs = {
     database: {
-        PORT: process.env.PORT || 3000,
+        PORT: process.env.DEV_PORT || 3000,
+        ENV: process.env.ENV_TYPE || '',
         DB_HOST: process.env.DB_HOST || "localhost",
         DB_PORT: parseInt(process.env.DB_PORT || "5432", 10),
         DB_USERNAME: process.env.DB_USERNAME || "postgres",

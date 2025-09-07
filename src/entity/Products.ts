@@ -5,6 +5,7 @@ import { Inventory } from "./Inventory";
 import { ProductImages } from "./ProductImages";
 import { ProductVariants } from "./ProductVariants";
 import { Wishlist } from "./Wishlist";
+import { OrderItems } from "./OrderItems";
 
 @Entity("products")
 
@@ -34,6 +35,9 @@ export class Products {
     @JoinColumn({ name: "category_id" })
     category!: Categories;
 
+    @OneToMany(() => OrderItems, (orderItems) => orderItems.productId)
+    orderItem: OrderItems[];
+
     @OneToMany(() => ProductImages, (productImage) => productImage.product)
     productImages!: ProductImages[]
 
@@ -43,9 +47,9 @@ export class Products {
     @OneToMany(() => Inventory, (inv) => inv.productInventory)
     inventory!: Inventory[];
 
-    @OneToMany(()=> CartItems, (cartItem)=> cartItem.product)
+    @OneToMany(() => CartItems, (cartItem) => cartItem.product)
     cartItem!: CartItems[];
 
-    @OneToMany(()=> Wishlist, (wishlist)=> wishlist.product)
+    @OneToMany(() => Wishlist, (wishlist) => wishlist.product)
     wishlist!: Wishlist[]
 }

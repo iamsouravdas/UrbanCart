@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, One
 import { Cart } from "./Carts";
 import { Role } from "./Role";
 import { Wishlist } from "./Wishlist";
+import { Orders } from "./Orders";
 
 
 @Entity("user")
@@ -38,6 +39,10 @@ export class User {
     @ManyToOne(() => Role, (role) => role.users)
     @JoinColumn({ name: "role_id" })
     role!: Role;
+
+
+    @OneToMany(() => Orders, (order) => order.user)
+    orders: Orders[];
 
     //Cart
     @OneToOne(() => Cart, (cart) => cart.user)

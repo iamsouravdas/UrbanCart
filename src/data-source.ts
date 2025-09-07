@@ -12,6 +12,9 @@ import { User } from "./entity/User";
 import { Cart } from "./entity/Carts";
 import { CartItems } from "./entity/CartItems";
 import { Wishlist } from "./entity/Wishlist";
+import { OrderItems } from "./entity/OrderItems";
+import { Orders } from "./entity/Orders";
+import { Addresses } from "./entity/Addresses";
 
 const AppDataSource = new DataSource({
     type: "postgres",
@@ -22,7 +25,7 @@ const AppDataSource = new DataSource({
     database: appConfigs.database.DB_NAME,
     synchronize: false,
     logging: true,
-    entities: [User, Role, Wishlist, OtpCode, CartItems, Wishlist, Categories, Cart, Products, ProductImages, Inventory, ProductVariants],
+    entities: [User, Role, Wishlist, OtpCode, CartItems, Wishlist, Categories, Cart, Addresses, Products, ProductImages, Inventory, ProductVariants, OrderItems, Orders],
     migrations: ["src/migrations/*.ts"],
     subscribers: [],
 });
