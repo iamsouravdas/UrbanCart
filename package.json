@@ -10,7 +10,7 @@
       "build": "tsc",
       "start": "ts-node dist/index.js",
       "typeorm": "typeorm-ts-node-commonjs",
-      "migration:generate": "npx typeorm-ts-node-commonjs migration:generate src/migrations/CreateUser -d src/data-source.ts",
+      "migration:generate": "npx typeorm-ts-node-commonjs migration:generate ./src/migrations/migration -d ./src/data-source.ts",
       "migration:create": "npm run typeorm migration:create ./src/migrations/$(date +%s)",
       "migration:run": "npm run typeorm -- migration:run -d src/data-source.ts",
       "migration:revert": "npm run typeorm migration:revert -d ./src/data-source.ts"
@@ -18,14 +18,18 @@
    "author": "",
    "license": "ISC",
    "dependencies": {
-      "@types/bcrypt": "^6.0.0",
       "@types/cors": "^2.8.19",
       "@types/express": "^5.0.3",
       "@types/jsonwebtoken": "^9.0.10",
       "@types/memory-cache": "^0.2.6",
+      "bcrypt": "^6.0.0",
       "concurrently": "^9.2.0",
+      "cookie-parser": "^1.4.7",
+      "cors": "^2.8.5",
+      "crypto": "^1.0.1",
       "express": "^5.1.0",
       "helmet": "^8.1.0",
+      "ioredis": "^5.7.0",
       "jsonwebtoken": "^9.0.2",
       "memory-cache": "^0.2.0",
       "nodemon": "^3.1.10",
@@ -34,6 +38,7 @@
       "typeorm": "0.3.25"
    },
    "devDependencies": {
+      "@types/bcrypt": "^6.0.0",
       "@types/node": "^22.13.10",
       "ts-node": "^10.9.2",
       "typescript": "^5.8.2"
