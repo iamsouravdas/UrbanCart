@@ -1,9 +1,11 @@
-import { dot } from "node:test/reporters";
-import { Entity, PrimaryGeneratedColumn, Column, Repository, CreateDateColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Cart } from "./Carts";
+import { Role } from "./Role";
+import { Wishlist } from "./Wishlist";
+import { Orders } from "./Orders";
 
-export type UserRole = "user" | "admin";
 
-@Entity()
+@Entity("user")
 export class User {
 
     @PrimaryGeneratedColumn()
@@ -15,17 +17,39 @@ export class User {
     @Column({ unique: true })
     email: string;
 
+    @Column({
+        type: "boolean",
+        default: false, // Indicates if the user is verified
+        name: "is_verified_email"
+    })
+    isVerifiedEmail: boolean;
+
     @Column()
     password: string;
 
     @Column()
     phone!: string;
+    @Column({
+        type: "boolean",
+        default: false, // Indicates if the user is active
+        name: "is_verified_phone"
+    })
+    isVerifiedPhone: boolean;
 
-    @Column({ type: "varchar", default: "user" })
-    role!: UserRole;
+    @ManyToOne(() => Role, (role) => role.users)
+    @JoinColumn({ name: "role_id" })
+    role!: Role;
 
-    @Column({ nullable: true })
-    refreshToken?: string;
+
+    @OneToMany(() => Orders, (order) => order.user)
+    orders: Orders[];
+
+    //Cart
+    @OneToOne(() => Cart, (cart) => cart.user)
+    cart!: Cart;
+
+    @OneToMany(() => Wishlist, (wishlist) => wishlist.user)
+    wishlist: Wishlist[];
 
     @CreateDateColumn()
     createdAt!: Date;
