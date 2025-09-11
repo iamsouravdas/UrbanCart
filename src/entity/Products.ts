@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CartItems } from "./CartItems";
 import { Categories } from "./Categories";
 import { Inventory } from "./Inventory";
@@ -25,10 +25,10 @@ export class Products {
     @Column({ type: "text", nullable: false })
     main_image_url!: string
 
-    @Column({ type: "timestamptz", nullable: false })
+    @Column({ type: "timestamptz", nullable: false, select: false })
     createdAt: Date;
 
-    @Column({ type: "timestamptz", nullable: false })
+    @Column({ type: "timestamptz", nullable: false, select: false })
     updatedAt: Date;
 
     @ManyToOne(() => Categories, (category) => category.id)
@@ -52,4 +52,8 @@ export class Products {
 
     @OneToMany(() => Wishlist, (wishlist) => wishlist.product)
     wishlist!: Wishlist[]
+
+
+    @DeleteDateColumn({ type: "timestamptz", nullable: true })
+    deletedAt?: Date;
 }

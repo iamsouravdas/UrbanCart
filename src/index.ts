@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // CORS configuration
-
 app.use(cors({
     origin: appConfigs.accessControl.ALLOWED_ORIGINS,
     methods: appConfigs.accessControl.ALLOWED_METHODS,
@@ -29,8 +28,6 @@ app.use("/api", appRoute);
 
 // Global Error Handling Configuration
 app.use(globalErrorHandler);
-
-// TODO: Cors Handling Configuration
 
 
 // Initialize the data source and start the server

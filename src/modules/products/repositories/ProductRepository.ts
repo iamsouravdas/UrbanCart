@@ -3,11 +3,11 @@ import { Products } from "../../../entity/Products";
 import { IProductRepository } from "./IProductRepository";
 import AppDataSource from "../../../data-source";
 
-export class ProductRepository implements IProductRepository{
+export class ProductRepository implements IProductRepository {
 
     private repo: Repository<Products>
 
-    constructor(_repo?: Repository<Products>){
+    constructor() {
         this.repo = AppDataSource.getRepository(Products);;
     }
 
@@ -17,13 +17,13 @@ export class ProductRepository implements IProductRepository{
      * 
      * @returns {Product[]} JSON object containing all the products
      */
-    
+
     async getAll(): Promise<Products[] | null> {
-        console.log("I am called")
+
         return await this.repo.find({
-            relations: ["category"]
+            relations: ["category", "productImages", "inventory", "productVariants"]
         });
-       
+
     }
     async getOne(): Promise<Products> {
         throw new Error("Method not implemented.");
