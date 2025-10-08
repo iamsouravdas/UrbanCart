@@ -25,11 +25,20 @@ export class ProductRepository implements IProductRepository {
         });
 
     }
-    async getOne(): Promise<Products> {
-        throw new Error("Method not implemented.");
+    async getOne(id: number): Promise<Products> {
+        return await this.repo.findOne({
+            where: { id: id },
+            relations: [
+                "category",
+                "productImages",
+                "inventory",
+                "productVariants"
+            ]
+        }
+        )
     }
     async create(prodDto: Partial<Products>): Promise<Products> {
-        throw new Error("Method not implemented.");
+        return await this.repo.create(prodDto);
     }
 
 }

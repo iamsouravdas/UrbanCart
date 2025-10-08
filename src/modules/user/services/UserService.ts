@@ -3,7 +3,6 @@ import { LoginDto } from '../../../dto/LoginDto';
 import { createUserDto, UserDto } from '../../../dto/UserDto';
 import { Role } from '../../../entity/Role';
 import { User } from '../../../entity/User';
-import { ApiError } from '../../../errors/ApiError';
 import { errorUtils } from '../../../helper/errorUtils';
 import { helpers } from '../../../helper/utils';
 import { IUserRepository } from "../repositories/IUserRepository";
